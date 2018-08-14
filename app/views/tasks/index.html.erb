@@ -1,0 +1,19 @@
+<h1>Task Manager</h1>
+<ol class="list-group">
+<% @tasks.each do |task| %>
+<li class="list-inline list-group-item"><% if task[:completed] %>
+      <i class="far fa-check-square"></i> <%= link_to task[:title], task_path(task[:id]) %>
+    <% else %>
+      <i class="far fa-square"></i> <%= link_to task[:title], task_path(task[:id]) %>
+      <%= link_to task_path(task),
+      method: :delete,
+      data: { confirm: "Are you sure?" } do %>
+   <i class="fas fa-trash"></i>
+  <% end %>
+    <% end %>
+  </li>
+  <% end %>
+
+</ol>
+<%= link_to "New task", new_path(@task), class: "btn btn-primary" %>
+
